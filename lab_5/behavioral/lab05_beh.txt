@@ -1,0 +1,47 @@
+`timescale 1ns / 1ps
+
+module lab05(
+    input wire a,
+    input wire b,
+    input wire c,
+    input wire d,
+    input wire s1,  
+    input wire s2,  
+    input wire s3, 
+    
+    output reg SEG_A, SEG_B, SEG_C, SEG_D, SEG_E, SEG_F, SEG_G, DP,
+    output reg AN0, AN1, AN2, AN3, AN4, AN5, AN6, AN7
+);
+
+    always @(*) begin
+        case ({a, b, c, d})
+            4'b0000: {SEG_A, SEG_B, SEG_C, SEG_D, SEG_E, SEG_F, SEG_G} = 7'b0000001;
+            4'b0001: {SEG_A, SEG_B, SEG_C, SEG_D, SEG_E, SEG_F, SEG_G} = 7'b1001111;
+            4'b0010: {SEG_A, SEG_B, SEG_C, SEG_D, SEG_E, SEG_F, SEG_G} = 7'b0010010;
+            4'b0011: {SEG_A, SEG_B, SEG_C, SEG_D, SEG_E, SEG_F, SEG_G} = 7'b0000110;
+            4'b0100: {SEG_A, SEG_B, SEG_C, SEG_D, SEG_E, SEG_F, SEG_G} = 7'b1001100;
+            4'b0101: {SEG_A, SEG_B, SEG_C, SEG_D, SEG_E, SEG_F, SEG_G} = 7'b0100100;
+            4'b0110: {SEG_A, SEG_B, SEG_C, SEG_D, SEG_E, SEG_F, SEG_G} = 7'b0100000;
+            4'b0111: {SEG_A, SEG_B, SEG_C, SEG_D, SEG_E, SEG_F, SEG_G} = 7'b0001111;
+            4'b1000: {SEG_A, SEG_B, SEG_C, SEG_D, SEG_E, SEG_F, SEG_G} = 7'b0000000;
+            4'b1001: {SEG_A, SEG_B, SEG_C, SEG_D, SEG_E, SEG_F, SEG_G} = 7'b0000100;
+            default: {SEG_A, SEG_B, SEG_C, SEG_D, SEG_E, SEG_F, SEG_G} = 7'b1111111;
+        endcase
+        DP = 1;
+    end
+
+    always @(*) begin
+        case ({s1, s2, s3})
+            3'b000: {AN0, AN1, AN2, AN3, AN4, AN5, AN6, AN7} = 8'b01111111;
+            3'b001: {AN0, AN1, AN2, AN3, AN4, AN5, AN6, AN7} = 8'b10111111;
+            3'b010: {AN0, AN1, AN2, AN3, AN4, AN5, AN6, AN7} = 8'b11011111;
+            3'b011: {AN0, AN1, AN2, AN3, AN4, AN5, AN6, AN7} = 8'b11101111;
+            3'b100: {AN0, AN1, AN2, AN3, AN4, AN5, AN6, AN7} = 8'b11110111;
+            3'b101: {AN0, AN1, AN2, AN3, AN4, AN5, AN6, AN7} = 8'b11111011;
+            3'b110: {AN0, AN1, AN2, AN3, AN4, AN5, AN6, AN7} = 8'b11111101;
+            3'b111: {AN0, AN1, AN2, AN3, AN4, AN5, AN6, AN7} = 8'b11111110;
+            default: {AN0, AN1, AN2, AN3, AN4, AN5, AN6, AN7} = 8'b11111111;
+        endcase
+    end
+
+endmodule
